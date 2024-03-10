@@ -9,3 +9,7 @@ output "my_security_group" {
 output "key_pair" {
   value = aws_key_pair.aws_key.id
 }
+
+output "public_ip" {
+  value = aws_instance.web_app.public_ip
+}

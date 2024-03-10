@@ -5,13 +5,13 @@ resource "aws_security_group" "my_security_group" {
   vpc_id      = aws_vpc.project.id
 
   dynamic "ingress" {
-    for_each = [22,80,8080,]
-    iterator = "port"
+    for_each = [22, 8080, 443, 3306, 80, 443]
+    iterator = port
     content {
-      from_port   = "port.balue"
-    to_port     = "port.value"
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Allow inbound traffic from anywhere on port 
+      from_port   = port.value
+      to_port     = port.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"] # Change this to the desired IP range
     }
   }
 
@@ -19,7 +19,7 @@ resource "aws_security_group" "my_security_group" {
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "-1"  # Allow all outbound traffic
+    protocol    = "-1" # Allow all outbound traffic
     cidr_blocks = ["0.0.0.0/0"]
   }
 
