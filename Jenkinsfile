@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        terraform 'Terraform' // Correct usage of tools block
+        terraform 'Terraform'
     }
 
     stages {
